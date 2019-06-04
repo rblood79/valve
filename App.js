@@ -174,7 +174,7 @@ const ListStack = createStackNavigator({
 });
 
 const RouteConfig = {
-  HOME: { 
+  시작화면: { 
     screen: HomeStack,
     navigationOptions: () => ({
       //header: null,
@@ -182,7 +182,7 @@ const RouteConfig = {
       tabBarVisible: false,
     }),
   },
-  SCAN: { 
+  스캔하기: { 
     screen: ScanStack,
     navigationOptions: () => ({
       tabBarOnPress({ navigation, defaultHandler }) {
@@ -195,7 +195,7 @@ const RouteConfig = {
       ),*/
     }),
   },
-  LIST: { 
+  스캔목차: { 
     screen: ListStack,
     navigationOptions: () => ({
       tabBarOnPress({ navigation, defaultHandler }) {
@@ -214,11 +214,11 @@ const BottomNavigatorConfig = {
       const { routeName } = navigation.state;
       let iconName;
       
-      if (routeName === 'HOME') {
+      if (routeName === '처음') {
         iconName = `md-home`;
-      } else if (routeName === 'SCAN') {
+      } else if (routeName === '스캔') {
         iconName = `ios-qr-scanner`;
-      } else if (routeName === 'LIST') {
+      } else if (routeName === '목차') {
         iconName = `ios-albums`;
       } else if (routeName === 'SETTING') {
         iconName = `settings`;
@@ -230,7 +230,7 @@ const BottomNavigatorConfig = {
     activeTintColor: '#d1121a',
     inactiveTintColor: '#939393',
     showIcon: true,
-    showLabel: false,
+    showLabel: true,
     labelStyle: {
       fontSize: 10,
     },
