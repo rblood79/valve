@@ -66,7 +66,7 @@ const ScanStack = createStackNavigator({
   SCAN: { 
     screen: Scan,
     navigationOptions: ({ navigation }) => ({
-      title: 'CODE SCANNING',
+      title: '밸브스캔',
       headerTitleStyle: { 
         textAlign:"center", 
         flex:1,
@@ -75,14 +75,14 @@ const ScanStack = createStackNavigator({
         borderWidth: 0
       },
       headerStyle: {
-        backgroundColor: '#6a51ae',
+        backgroundColor: '#d1121a',
         elevation: 0,
         shadowOpacity: 0,
         borderBottomWidth: 0,
         borderBottomColor: '#efefef',
         height: 48,
       },
-      headerTintColor: '#41306c',
+      headerTintColor: '#d1121a',
       headerLeft: (
         <View/>
         //<Icon name='ios-arrow-back' size={25} style={styles.stateLeft}/>
@@ -95,7 +95,7 @@ const ScanStack = createStackNavigator({
   DETAIL: { 
     screen: Detail,
     navigationOptions: ({ navigation }) => ({
-      title: 'SCAN DETAIL',
+      title: '상세정보',
       headerTitleStyle: { 
         textAlign:"center", 
         flex:1,
@@ -109,7 +109,7 @@ const ScanStack = createStackNavigator({
         borderBottomColor: '#efefef',
         height: 48
       },
-      headerTintColor: '#41306c',
+      headerTintColor: '#d1121a',
       headerRight: (
         <View/>
       ),
@@ -122,7 +122,7 @@ const ListStack = createStackNavigator({
   LIST: { 
     screen: List,
     navigationOptions: ({ navigation }) => ({
-      title: 'SCAN LIST',
+      title: '스캔리스트',
       headerTitleStyle: { 
         textAlign:"center", 
         flex:1,
@@ -130,14 +130,14 @@ const ListStack = createStackNavigator({
         color:'#fff',
       },
       headerStyle: {
-        backgroundColor: '#6a51ae',
+        backgroundColor: '#d1121a',
         elevation: 0,
         shadowOpacity: 0,
         borderBottomWidth: 0,
         borderBottomColor: '#efefef',
         height: 48
       },
-      headerTintColor: '#41306c',
+      headerTintColor: '#d1121a',
       headerLeft: (
         <View/>
         //<Icon name='ios-arrow-back' size={25} style={styles.stateLeft}/>
@@ -150,7 +150,7 @@ const ListStack = createStackNavigator({
   DETAIL: { 
     screen: Detail,
     navigationOptions: ({ navigation }) => ({
-      title: 'SCAN DETAIL',
+      title: '상세정보',
       headerTitleStyle: { 
         textAlign:"center", 
         flex:1,
@@ -164,7 +164,7 @@ const ListStack = createStackNavigator({
         borderBottomColor: '#efefef',
         height: 48
       },
-      headerTintColor: '#41306c',
+      headerTintColor: '#d1121a',
       headerRight: (
         <View/>
       ),
@@ -190,9 +190,9 @@ const RouteConfig = {
         //navigation.navigate('SCAN', { qrvalue: '' })
         //defaultHandler();
       },
-      tabBarButtonComponent: ({navigation}) => (
+      /*tabBarButtonComponent: ({navigation}) => (
         <ScanButton/>
-      ),
+      ),*/
     }),
   },
   LIST: { 
@@ -227,10 +227,10 @@ const BottomNavigatorConfig = {
     },
   }),
   tabBarOptions: {
-    activeTintColor: '#6a51ae',
+    activeTintColor: '#d1121a',
     inactiveTintColor: '#939393',
     showIcon: true,
-    showLabel: true,
+    showLabel: false,
     labelStyle: {
       fontSize: 10,
     },

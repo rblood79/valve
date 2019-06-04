@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 160,
         borderWidth: 0,
-        borderColor: '#6a51ae',
+        borderColor: '#d1121a',
         backgroundColor:'#fff',
         flex: 1,
         justifyContent:'center',
@@ -127,45 +127,45 @@ export default class Detail extends Component{
                         <View style={{flex: 1, flexDirection: 'row', borderWidth:1, borderTopWidth:0, borderColor:'#efefef', justifyContent:'space-between'}}>
                             <View style={{width:'100%',paddingTop:12,paddingBottom:12, backgroundColor: '#fff',flex: 1, alignItems:'center', justifyContent:'center'}} >
                                 <Icon name='ios-barcode' size={25} color='#646464' />
-                                <Text style={{fontSize:0, marginTop:6, color:'#6a51ae'}}>Tag No</Text>
-                                <Text style={{fontSize:18, fontWeight:'bold', marginTop:0, color:'#6a51ae'}}>{findItem.ID}</Text>
+                                <Text style={{fontSize:0, marginTop:6, color:'#d1121a'}}>Tag No</Text>
+                                <Text style={{fontSize:18, fontWeight:'bold', marginTop:0, color:'#d1121a'}}>{findItem.TAG}</Text>
                             </View>
                         </View>
 
                         <View style={styles.blockContainer}>
                             <View style={styles.block}>
                                 <Icon name='ios-contact' size={25} color='#646464' />
-                                <Text style={{fontSize:12, marginTop:6, color:'#6a51ae'}}>사용자</Text>
+                                <Text style={{fontSize:12, marginTop:6, color:'#d1121a'}}>사용자</Text>
                                 <Text style={{fontSize:12, marginTop:0}}>{findItem.USER}</Text>
                             </View>
                             <View style={styles.block}>
                                 <Icon name='ios-build' size={25} color='#646464' />
-                                <Text style={{fontSize:12, marginTop:6, color:'#6a51ae'}}>제조사</Text>
+                                <Text style={{fontSize:12, marginTop:6, color:'#d1121a'}}>제조사</Text>
                                 <Text style={{fontSize:12, marginTop:0}}>{findItem.BUILDER}</Text>
                             </View>
                             <View style={styles.block}>
                                 <Icon name='ios-calendar' size={25} color='#646464' />
-                                <Text style={{fontSize:12, marginTop:6, color:'#6a51ae'}}>제조일</Text>
+                                <Text style={{fontSize:12, marginTop:6, color:'#d1121a'}}>제조일</Text>
                                 <Text style={{fontSize:12, marginTop:0}}>{findItem.MAKEDATE}</Text>
                             </View>
                             <View style={styles.block}>
                                 <Icon name='ios-timer' size={25} color='#646464' />
-                                <Text style={{fontSize:12, marginTop:6, color:'#6a51ae'}}>운전시간</Text>
+                                <Text style={{fontSize:12, marginTop:6, color:'#d1121a'}}>운전시간</Text>
                                 <Text style={{fontSize:12, marginTop:0}}>{findItem.USETIME}</Text>
                             </View>
                             <View style={styles.block}>
                                 <Icon name='ios-time' size={25} color='#646464' />
-                                <Text style={{fontSize:12, marginTop:6, color:'#6a51ae'}}>권장운전시간</Text>
+                                <Text style={{fontSize:12, marginTop:6, color:'#d1121a'}}>권장운전시간</Text>
                                 <Text style={{fontSize:12, marginTop:0}}>{findItem.SAFETIME}</Text>
                             </View>
                             <View style={styles.block}>
                                 <Icon name='md-speedometer' size={25} color='#646464' />
-                                <Text style={{fontSize:12, marginTop:6, color:'#6a51ae'}}>운전시작일</Text>
+                                <Text style={{fontSize:12, marginTop:6, color:'#d1121a'}}>운전시작일</Text>
                                 <Text style={{fontSize:12, marginTop:0}}>{findItem.STARTDATE}</Text>
                             </View>
                         </View>
 
-                        <Text style={styles.infoTitle}>LIFE LIMITED</Text>
+                        <Text style={styles.infoTitle}>예상수명</Text>
                         <View style={{flex: 1, borderWidth:1, borderTopWidth:0, borderColor:'#efefef', alignItems:'center'}}>
                             <View style={styles.graph}>
                                 <Speedometer
@@ -186,40 +186,48 @@ export default class Detail extends Component{
                             
                         </View>
                         
-                        <Text style={styles.infoTitle}>SERVICE CONDITIONS</Text>
+                        <Text style={styles.infoTitle}>서비스 컨디션</Text>
+                        <Text style={styles.info}>제조회사 : {findItem.BUILDER}</Text>
+                        <Text style={styles.info}>제조일 : {findItem.MAKEDATE}</Text>
+                        <Text style={styles.info}>운전시간 : {findItem.USETIME}</Text>
+                        <Text style={styles.info}>권장운전시간 : {findItem.SAFETIME}</Text>
+                        <Text style={styles.info}>운전시작일 : {findItem.STARTDATE}</Text>
                         <Text style={styles.info}>사용자 : {findItem.USER}</Text>
-                        <Text style={styles.info}>TAG NO : {findItem.ID}</Text>
-                        <Text style={styles.info}>Temperature of SITE : {findItem.TEMPERATURE}</Text>
-                        <Text style={styles.info}>Location of Valve</Text>
-                        <Text style={styles.info}>제조사 : {findItem.BUILDER}</Text>
-                        <Text style={styles.info}>Service Fluid : {findItem.SERVICEFLUID}</Text>
-                        <Text style={styles.info}>Service Flow Rate : {findItem.SERVICEFLOWRATE}</Text>
-                        <Text style={styles.info}>Service Flow Press : {findItem.SERVICEFLOWPRESS}</Text>
+                        <Text style={styles.info}>테그 넘버 : {findItem.TAG}</Text>
+                        <Text style={styles.info}>주변 온도 : {findItem.TEMPERATURE}</Text>
+                        <Text style={styles.info}>밸브 위치 : {findItem.LOCATION}</Text>
+                        <Text style={styles.info}>유체 타입 : {findItem.SERVICEFLUID}</Text>
+                        <Text style={styles.info}>유량 값 : {findItem.SERVICEFLUIDFLOW}</Text>
+                        <Text style={styles.info}>유체 온도 : {findItem.SERVICEFLUIDTEMP}</Text>
 
-                        <Text style={styles.infoTitle}>VALVE</Text>
-                        <Text style={styles.info}>Valve Type : {findItem.VALVETYPE}</Text>
-                        <Text style={styles.info}>SIZE : {findItem.SIZE}</Text>
-                        <Text style={styles.info}>RATING : {findItem.RATING}</Text>
-                        <Text style={styles.info}>END Connection : {findItem.ENDCONNECTION}</Text>
-                        <Text style={styles.info}>Material BODY : {findItem.MATERIALBODY}</Text>
-                        <Text style={styles.info}>Material TRIM : {findItem.MATERIALTRIM}</Text>
-                        <Text style={styles.info}>Material SEAT : {findItem.MATERIALSEAT}</Text>
-                        <Text style={styles.info}>Material PACKING : {findItem.MATERIALPACKING}</Text>
-                        <Text style={styles.info}>Cv : {findItem.CV}</Text>
+                        <Text style={styles.infoTitle}>밸브</Text>
+                        <Text style={styles.info}>밸브타입 : {findItem.VALVETYPE}</Text>
+                        <Text style={styles.info}>본넷타입 : {findItem.BONNETTYPE}</Text>
+                        <Text style={styles.info}>밸브사이즈 : {findItem.SIZE}</Text>
+                        <Text style={styles.info}>압력 : {findItem.RATING}</Text>
+                        <Text style={styles.info}>엔드 커넥션 : {findItem.ENDCONNECTION}</Text>
+                        <Text style={styles.info}>유록경 타입 : {findItem.BORE}</Text>
+                        <Text style={styles.info}>패킹타입 : {findItem.PACKINGTYPE}</Text>
+                        <Text style={styles.info}>바디-재질 : {findItem.MATERIALBODY}</Text>
+                        <Text style={styles.info}>트림(디스크, 볼)-재질 : {findItem.MATERIALTRIM}</Text>
+                        <Text style={styles.info}>시트-재질 : {findItem.MATERIALSEAT}</Text>
+                        <Text style={styles.info}>패킹-재질 : {findItem.MATERIALPACKING}</Text>
+                        <Text style={styles.info}>유량계수 : {findItem.CV}</Text>
 
-                        <Text style={styles.infoTitle}>ACTUATOR</Text>
-                        <Text style={styles.info}>Operation Type : {findItem.OPERATIONTYPE}</Text>
-                        <Text style={styles.info}>Performance : {findItem.PERFORMANCE}</Text>
-                        <Text style={styles.info}>Fail Action : {findItem.FAILACTION}</Text>
-                        <Text style={styles.info}>Hand Wheel : {findItem.HANDWHEEL}</Text>
-                        <Text style={styles.info}>Model : {findItem.MODEL}</Text>
+                        <Text style={styles.infoTitle}>엑츄레이터</Text>
+                        <Text style={styles.info}>작동기 타입 : {findItem.OPERATIONTYPE}</Text>
+                        <Text style={styles.info}>작동방법 : {findItem.PERFORMANCE}</Text>
+                        <Text style={styles.info}>페일 포지션 : {findItem.FAILACTION}</Text>
+                        <Text style={styles.info}>핸드휠 : {findItem.HANDWHEELACTUATOR}</Text>
+                        <Text style={styles.info}>모델 : {findItem.MODEL}</Text>
 
-                        <Text style={styles.infoTitle}>ACCESSORY</Text>
-                        <Text style={styles.info}>E/P POSITIONER : {findItem.EPPOSITIONER}</Text>
-                        <Text style={styles.info}>SOLENOID VALVE : {findItem.SOLENOIDVALVE}</Text>
-                        <Text style={styles.info}>LIMIT SWITCH : {findItem.LIMITSWITCH}</Text>
-                        <Text style={styles.info}>AIR FILTER : {findItem.AIRFILTER}</Text>
-                        <Text style={styles.info}>AIR REGULATOR : {findItem.AIRREGULATOR}</Text>
+                        <Text style={styles.infoTitle}>악세서리</Text>
+                        <Text style={styles.info}>포지셔너 : {findItem.EPPOSITIONER}</Text>
+                        <Text style={styles.info}>슬레노이드 밸브 : {findItem.SOLENOIDVALVE}</Text>
+                        <Text style={styles.info}>리미트 스위치 : {findItem.LIMITSWITCH}</Text>
+                        <Text style={styles.info}>에어 필터 : {findItem.AIRFILTER}</Text>
+                        <Text style={styles.info}>볼륨 부스터 : {findItem.VOLUMEBOOSTER}</Text>
+                        <Text style={styles.info}>핸드휠 : {findItem.HANDWHEELACCESSORY}</Text>
 
                     </ScrollView>
                     <View style={styles.footerFix}>
@@ -261,308 +269,119 @@ export default class Detail extends Component{
 const listItem = [
     {
         ID : 'TVMSIHMSSSXV201A',
-        USER : '현대제철',
-        BUILDER : 'U.A 밸브',
+        BUILDER : '유에이자동밸브',
         MAKEDATE : '2019.01.01',
         USETIME : '300Hr',
         SAFETIME : '1000Hr',
         STARTDATE : '2019.03.10',
-        LIFE : 91,
-        TEMPERATURE : 'AMB',
-        LOCATION :'',
+        USER : '현대제철',
+        TAG : 'XV-201A',
+        TEMPERATURE : '25',
+        LOCATION :'2-DECK',
         SERVICEFLUID :'AMMONIA',
-        SERVICEFLOWRATE : '242.2 kg/h',
-        SERVICEFLOWPRESS : '2.6 kg/cm2g',
+        SERVICEFLUIDFLOW : '150',
+        SERVICEFLUIDTEMP : '30',
         VALVETYPE : 'GLOBE',
+        BONNETTYPE : 'MFR',
         SIZE : '65A',
         RATING : 'JIS 10K',
         ENDCONNECTION : 'RF',
+        BORE : 'MFR',
+        PACKINGTYPE : 'V-PACKING',
         MATERIALBODY : 'SCPH2',
         MATERIALTRIM : '316SS',
         MATERIALSEAT : '316SS',
-        MATERIALPACKING : 'V-PTFE',
-        CV : 'TBA',
-        OPERATIONTYPE : 'Diaphragm Reverse Action',
+        MATERIALPACKING : 'PTFE',
+        CV : '60',
+        OPERATIONTYPE : 'DIAPHRAGM-RA',
         PERFORMANCE : 'CONTROL',
         FAILACTION : 'CLOSE',
-        HANDWHEEL : 'TAP',
-        MODEL : 'ACV-65',
-        EPPOSITIONER : 'empty',
-        SOLENOIDVALVE : 'empty',
-        LIMITSWITCH : 'empty',
-        AIRFILTER : 'empty',
-        AIRREGULATOR : 'empty'
+        HANDWHEELACTUATOR : 'TOP',
+        MODEL : 'ACV',
+        EPPOSITIONER : 'Fisher/DVC-6200',
+        SOLENOIDVALVE : 'NONR',
+        LIMITSWITCH : 'NONE',
+        AIRFILTER : 'YT-200',
+        VOLUMEBOOSTER : 'NONE',
+        HANDWHEELACCESSORY : 'NONE',
+        LIFE : 80,
     },
     {
         ID : 'TVMSIHMSSSXV201B',
-        USER : 'POSCO',
-        BUILDER : 'U.A 밸브',
+        BUILDER : '유에이자동밸브',
         MAKEDATE : '2019.01.01',
-        USETIME : '300Hr',
+        USETIME : '400Hr',
         SAFETIME : '1000Hr',
-        STARTDATE : '2019.05.10',
-        LIFE : 86,
-        TEMPERATURE : 'AMB',
-        LOCATION :'',
-        SERVICEFLUID :'AMMONIA',
-        SERVICEFLOWRATE : '242.2 kg/h',
-        SERVICEFLOWPRESS : '2.6 kg/cm2g',
-        VALVETYPE : 'GLOBE',
-        SIZE : '65A',
-        RATING : 'JIS 10K',
+        STARTDATE : '2019.03.10',
+        USER : '삼천포 화력발전소',
+        TAG : 'XV-201B',
+        TEMPERATURE : '35',
+        LOCATION :'2-DECK',
+        SERVICEFLUID :'WATER',
+        SERVICEFLUIDFLOW : '2000',
+        SERVICEFLUIDTEMP : '50',
+        VALVETYPE : 'BALL',
+        BONNETTYPE : 'TRUNNION',
+        SIZE : '100A',
+        RATING : 'ANSI 150#',
         ENDCONNECTION : 'RF',
-        MATERIALBODY : 'SCPH2',
+        BORE : 'FULL',
+        PACKINGTYPE : 'V-PACKING',
+        MATERIALBODY : 'A351-CF8',
         MATERIALTRIM : '316SS',
-        MATERIALSEAT : '316SS',
-        MATERIALPACKING : 'V-PTFE',
-        CV : 'TBA',
-        OPERATIONTYPE : 'Diaphragm Reverse Action',
-        PERFORMANCE : 'CONTROL',
-        FAILACTION : 'CLOSE',
-        HANDWHEEL : 'TAP',
-        MODEL : 'ACV-65',
-        EPPOSITIONER : 'empty',
-        SOLENOIDVALVE : 'empty',
-        LIMITSWITCH : 'empty',
-        AIRFILTER : 'empty',
-        AIRREGULATOR : 'empty'
+        MATERIALSEAT : 'RTFE',
+        MATERIALPACKING : 'PTFE',
+        CV : '100',
+        OPERATIONTYPE : 'SPRING RETURN',
+        PERFORMANCE : 'ON-OFF',
+        FAILACTION : 'OPEN',
+        HANDWHEELACTUATOR : 'NONE',
+        MODEL : 'AS140',
+        EPPOSITIONER : 'NONE',
+        SOLENOIDVALVE : 'PARKER/341Y312UNML',
+        LIMITSWITCH : 'I-TORK / ITS-100',
+        AIRFILTER : 'PARKER / P31EA',
+        VOLUMEBOOSTER : 'NONE',
+        HANDWHEELACCESSORY : 'AUTOMA / ADG-140N',
+        LIFE : 50
     },
     {
         ID : 'TVMSIHMSSSXV201C',
-        USER : 'POSCO',
-        BUILDER : 'U.A 밸브',
-        MAKEDATE : '2010.11.01',
-        USETIME : '300Hr',
+        BUILDER : '유에이자동밸브',
+        MAKEDATE : '2019.01.01',
+        USETIME : '500Hr',
         SAFETIME : '1000Hr',
-        STARTDATE : '2011.05.16',
-        LIFE : 46,
-        TEMPERATURE : 'AMB2',
-        LOCATION :'',
-        SERVICEFLUID :'AMMONIA',
-        SERVICEFLOWRATE : '242.2 kg/h',
-        SERVICEFLOWPRESS : '2.6 kg/cm2g',
-        VALVETYPE : 'GLOBE',
-        SIZE : '65A',
-        RATING : 'JIS 10K',
-        ENDCONNECTION : 'RF',
-        MATERIALBODY : 'SCPH2',
+        STARTDATE : '2019.03.10',
+        USER : '포스코',
+        TAG : 'XV-201C',
+        TEMPERATURE : '60',
+        LOCATION :'2-DECK',
+        SERVICEFLUID :'AIR',
+        SERVICEFLUIDFLOW : '2500',
+        SERVICEFLUIDTEMP : '15',
+        VALVETYPE : 'BUTTERFLY',
+        BONNETTYPE : 'HI-PERFORMANCE',
+        SIZE : '150A',
+        RATING : 'ANSI 150#',
+        ENDCONNECTION : 'WAFER',
+        BORE : 'MFR',
+        PACKINGTYPE : 'V-PACKING',
+        MATERIALBODY : 'A216-WCB',
         MATERIALTRIM : '316SS',
-        MATERIALSEAT : '316SS',
-        MATERIALPACKING : 'V-PTFE',
-        CV : 'TBA',
-        OPERATIONTYPE : 'Diaphragm Reverse Action',
-        PERFORMANCE : 'CONTROL',
-        FAILACTION : 'CLOSE',
-        HANDWHEEL : 'TAP',
-        MODEL : 'ACV-65',
-        EPPOSITIONER : 'empty',
-        SOLENOIDVALVE : 'empty',
-        LIMITSWITCH : 'empty',
-        AIRFILTER : 'empty',
-        AIRREGULATOR : 'empty'
-    },
-    {
-        ID : 'TVMSIHMSSSXV202A',
-        USER : 'POSCO',
-        BUILDER : 'U.A 밸브',
-        MAKEDATE : '2013.01.01',
-        USETIME : '300Hr',
-        SAFETIME : '1000Hr',
-        STARTDATE : '2013.11.12',
-        LIFE : 26,
-        TEMPERATURE : 'AMB',
-        LOCATION :'',
-        SERVICEFLUID :'AMMONIA',
-        SERVICEFLOWRATE : '242.2 kg/h',
-        SERVICEFLOWPRESS : '2.6 kg/cm2g',
-        VALVETYPE : 'GLOBE',
-        SIZE : '65A',
-        RATING : 'JIS 10K',
-        ENDCONNECTION : 'RF',
-        MATERIALBODY : 'SCPH2',
-        MATERIALTRIM : '316SS',
-        MATERIALSEAT : '316SS',
-        MATERIALPACKING : 'V-PTFE',
-        CV : 'TBA',
-        OPERATIONTYPE : 'Diaphragm Reverse Action',
-        PERFORMANCE : 'CONTROL',
-        FAILACTION : 'CLOSE',
-        HANDWHEEL : 'TAP',
-        MODEL : 'ACV-65',
-        EPPOSITIONER : 'empty',
-        SOLENOIDVALVE : 'empty',
-        LIMITSWITCH : 'empty',
-        AIRFILTER : 'empty',
-        AIRREGULATOR : 'empty'
-    },
-    {
-        ID : 'TVMSIHMSSSXV202B',
-        USER : 'POSCO',
-        BUILDER : 'U.A 밸브',
-        MAKEDATE : '2013.01.01',
-        USETIME : '300Hr',
-        SAFETIME : '1000Hr',
-        STARTDATE : '2014.08.21',
-        LIFE : 36,
-        TEMPERATURE : 'AMB',
-        LOCATION :'',
-        SERVICEFLUID :'AMMONIA',
-        SERVICEFLOWRATE : '242.2 kg/h',
-        SERVICEFLOWPRESS : '2.6 kg/cm2g',
-        VALVETYPE : 'GLOBE',
-        SIZE : '65A',
-        RATING : 'JIS 10K',
-        ENDCONNECTION : 'RF',
-        MATERIALBODY : 'SCPH2',
-        MATERIALTRIM : '316SS',
-        MATERIALSEAT : '316SS',
-        MATERIALPACKING : 'V-PTFE',
-        CV : 'TBA',
-        OPERATIONTYPE : 'Diaphragm Reverse Action',
-        PERFORMANCE : 'CONTROL',
-        FAILACTION : 'CLOSE',
-        HANDWHEEL : 'TAP',
-        MODEL : 'ACV-65',
-        EPPOSITIONER : 'empty',
-        SOLENOIDVALVE : 'empty',
-        LIMITSWITCH : 'empty',
-        AIRFILTER : 'empty',
-        AIRREGULATOR : 'empty'
-    },
-    {
-        ID : 'TVMSIHMSSSXV202C',
-        USER : '현대제철',
-        BUILDER : 'U.A 밸브',
-        MAKEDATE : '2010.01.01',
-        USETIME : '300Hr',
-        SAFETIME : '1000Hr',
-        STARTDATE : '2011.05.03',
-        LIFE : 12,
-        TEMPERATURE : 'AMB',
-        LOCATION :'',
-        SERVICEFLUID :'AMMONIA',
-        SERVICEFLOWRATE : '242.2 kg/h',
-        SERVICEFLOWPRESS : '2.6 kg/cm2g',
-        VALVETYPE : 'GLOBE',
-        SIZE : '65A',
-        RATING : 'JIS 10K',
-        ENDCONNECTION : 'RF',
-        MATERIALBODY : 'SCPH2',
-        MATERIALTRIM : '316SS',
-        MATERIALSEAT : '316SS',
-        MATERIALPACKING : 'V-PTFE',
-        CV : 'TBA',
-        OPERATIONTYPE : 'Diaphragm Reverse Action',
-        PERFORMANCE : 'CONTROL',
-        FAILACTION : 'CLOSE',
-        HANDWHEEL : 'TAP',
-        MODEL : 'ACV-65',
-        EPPOSITIONER : 'empty',
-        SOLENOIDVALVE : 'empty',
-        LIMITSWITCH : 'empty',
-        AIRFILTER : 'empty',
-        AIRREGULATOR : 'empty'
-    },
-    {
-        ID : 'TVMSIHMSSSXV302C',
-        USER : '현대제철',
-        BUILDER : 'U.A 밸브',
-        MAKEDATE : '2000.01.01',
-        USETIME : '300Hr',
-        SAFETIME : '1000Hr',
-        STARTDATE : '2000.02.28',
-        LIFE : 10,
-        TEMPERATURE : 'AMB',
-        LOCATION :'',
-        SERVICEFLUID :'AMMONIA',
-        SERVICEFLOWRATE : '242.2 kg/h',
-        SERVICEFLOWPRESS : '2.6 kg/cm2g',
-        VALVETYPE : 'GLOBE',
-        SIZE : '65A',
-        RATING : 'JIS 10K',
-        ENDCONNECTION : 'RF',
-        MATERIALBODY : 'SCPH2',
-        MATERIALTRIM : '316SS',
-        MATERIALSEAT : '316SS',
-        MATERIALPACKING : 'V-PTFE',
-        CV : 'TBA',
-        OPERATIONTYPE : 'Diaphragm Reverse Action',
-        PERFORMANCE : 'CONTROL',
-        FAILACTION : 'CLOSE',
-        HANDWHEEL : 'TAP',
-        MODEL : 'ACV-65',
-        EPPOSITIONER : 'empty',
-        SOLENOIDVALVE : 'empty',
-        LIMITSWITCH : 'empty',
-        AIRFILTER : 'empty',
-        AIRREGULATOR : 'empty'
-    },
-    {
-        ID : 'TVMSTRWESSXV302A',
-        USER : 'POSCO',
-        BUILDER : 'U.A 밸브',
-        MAKEDATE : '1979.11.01',
-        USETIME : '300Hr',
-        SAFETIME : '1000Hr',
-        STARTDATE : '2001.05.18',
-        LIFE : 5,
-        TEMPERATURE : 'AMB2',
-        LOCATION :'',
-        SERVICEFLUID :'AMMONIA',
-        SERVICEFLOWRATE : '242.2 kg/h',
-        SERVICEFLOWPRESS : '2.6 kg/cm2g',
-        VALVETYPE : 'GLOBE',
-        SIZE : '65A',
-        RATING : 'JIS 10K',
-        ENDCONNECTION : 'RF',
-        MATERIALBODY : 'SCPH2',
-        MATERIALTRIM : '316SS',
-        MATERIALSEAT : '316SS',
-        MATERIALPACKING : 'V-PTFE',
-        CV : 'TBA',
-        OPERATIONTYPE : 'Diaphragm Reverse Action',
-        PERFORMANCE : 'CONTROL',
-        FAILACTION : 'CLOSE',
-        HANDWHEEL : 'TAP',
-        MODEL : 'ACV-65',
-        EPPOSITIONER : 'empty',
-        SOLENOIDVALVE : 'empty',
-        LIMITSWITCH : 'empty',
-        AIRFILTER : 'empty',
-        AIRREGULATOR : 'empty'
-    },
-    {
-        ID : 'TVMSZZSCSSXV302C',
-        USER : '현대제철',
-        BUILDER : 'U.A 밸브',
-        MAKEDATE : '1999.01.01',
-        USETIME : '300Hr',
-        SAFETIME : '1000Hr',
-        STARTDATE : '2010.04.21',
-        LIFE : 8,
-        TEMPERATURE : 'AMB',
-        LOCATION :'',
-        SERVICEFLUID :'AMMONIA',
-        SERVICEFLOWRATE : '242.2 kg/h',
-        SERVICEFLOWPRESS : '2.6 kg/cm2g',
-        VALVETYPE : 'GLOBE',
-        SIZE : '65A',
-        RATING : 'JIS 10K',
-        ENDCONNECTION : 'RF',
-        MATERIALBODY : 'SCPH2',
-        MATERIALTRIM : '316SS',
-        MATERIALSEAT : '316SS',
-        MATERIALPACKING : 'V-PTFE',
-        CV : 'TBA',
-        OPERATIONTYPE : 'Diaphragm Reverse Action',
-        PERFORMANCE : 'CONTROL',
-        FAILACTION : 'CLOSE',
-        HANDWHEEL : 'TAP',
-        MODEL : 'ACV-65',
-        EPPOSITIONER : 'empty',
-        SOLENOIDVALVE : 'empty',
-        LIMITSWITCH : 'empty',
-        AIRFILTER : 'empty',
-        AIRREGULATOR : 'empty'
+        MATERIALSEAT : 'RTFE',
+        MATERIALPACKING : 'RTFE',
+        CV : '150',
+        OPERATIONTYPE : 'DOUBLE',
+        PERFORMANCE : 'ON-OFF',
+        FAILACTION : 'LOCK',
+        HANDWHEELACTUATOR : 'NONE',
+        MODEL : 'AD100',
+        EPPOSITIONER : 'NONE',
+        SOLENOIDVALVE : 'PARKER/341Y312UNML',
+        LIMITSWITCH : 'I-TORK / ITS-100',
+        AIRFILTER : 'PARKER / P31EA',
+        VOLUMEBOOSTER : 'NONE',
+        HANDWHEELACCESSORY : 'AUTOMA / ADG-140N',
+        LIFE : 13
     }
 ]

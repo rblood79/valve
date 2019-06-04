@@ -160,10 +160,10 @@ export default class Scan extends Component {
           <View style={styles.container}>
             <View style={styles.focusContainer}>
                 <View style={{ width: 192, height:192, }}>
-                  <Text style={{ width:48, height: 48, borderTopWidth:6, borderLeftWidth:6, borderColor:'#6a51ae'}}></Text>
-                  <Text style={{ width:48, height: 48, borderTopWidth:6, borderRightWidth:6, borderColor:'#6a51ae', position:'absolute', right:0, top:0}}></Text>
-                  <Text style={{ width:48, height: 48, borderBottomWidth:6, borderLeftWidth:6, borderColor:'#6a51ae', position:'absolute', left:0, bottom:0}}></Text>
-                  <Text style={{ width:48, height: 48, borderBottomWidth:6, borderRightWidth:6, borderColor:'#6a51ae', position:'absolute', right:0, bottom:0}}></Text>
+                  <Text style={{ width:48, height: 48, borderTopWidth:6, borderLeftWidth:6, borderColor:'#d1121a'}}></Text>
+                  <Text style={{ width:48, height: 48, borderTopWidth:6, borderRightWidth:6, borderColor:'#d1121a', position:'absolute', right:0, top:0}}></Text>
+                  <Text style={{ width:48, height: 48, borderBottomWidth:6, borderLeftWidth:6, borderColor:'#d1121a', position:'absolute', left:0, bottom:0}}></Text>
+                  <Text style={{ width:48, height: 48, borderBottomWidth:6, borderRightWidth:6, borderColor:'#d1121a', position:'absolute', right:0, bottom:0}}></Text>
                   <Text style={styles.result}>{this.state.qrvalue ? ID : ''}</Text>
                 </View>
               </View>
@@ -175,17 +175,17 @@ export default class Scan extends Component {
               
               <View style={styles.block}>
                   <Icon name='ios-barcode' size={25} color='#646464' />
-                  <Text style={{fontSize:12, marginTop:6, color:'#6a51ae'}}>Tag No</Text>
+                  <Text style={{fontSize:12, marginTop:6, color:'#d1121a'}}>Tag No</Text>
                   <Text style={{fontSize:12, marginTop:0}}>{tempArray.length > 1 ? ID : '등록되지 않았습니다'}</Text>
               </View>
               <View style={styles.block}>
                   <Icon name='ios-calendar' size={25} color='#646464' />
-                  <Text style={{fontSize:12, marginTop:6, color:'#6a51ae'}}>제조일</Text>
+                  <Text style={{fontSize:12, marginTop:6, color:'#d1121a'}}>제조일</Text>
                   <Text style={{fontSize:12, marginTop:0}}>{tempArray.length > 2 ? MAKEDATE : '정보가 없습니다'}</Text>
               </View>
               <View style={styles.block}>
                   <Icon name='md-speedometer' size={25} color='#646464' />
-                  <Text style={{fontSize:12, marginTop:6, color:'#6a51ae'}}>운전시작일</Text>
+                  <Text style={{fontSize:12, marginTop:6, color:'#d1121a'}}>운전시작일</Text>
                   <Text style={{fontSize:12, marginTop:0}}>{tempArray.length > 2 ? STARTDATE : '정보가 없습니다'}</Text>
               </View>
 
@@ -196,7 +196,7 @@ export default class Scan extends Component {
                   underlayColor="#424242"
                   style={styles.buttonTouch}>
                     <Text style={styles.buttonText}>
-                      <Icon name='ios-clipboard' size={18} color='#fff' />  결과 보기
+                      <Icon name='ios-clipboard' size={18} color='#fff' />  상세 정보
                     </Text>
                 </TouchableHighlight>
                 : null
@@ -236,10 +236,10 @@ export default class Scan extends Component {
               
               <View style={styles.focusContainer}>
                 <View style={{ width: 192, height:192 }}>
-                  <Text style={{ width:48, height: 48, borderTopWidth:6, borderLeftWidth:6, borderColor:'#6a51ae'}}></Text>
-                  <Text style={{ width:48, height: 48, borderTopWidth:6, borderRightWidth:6, borderColor:'#6a51ae', position:'absolute', right:0, top:0}}></Text>
-                  <Text style={{ width:48, height: 48, borderBottomWidth:6, borderLeftWidth:6, borderColor:'#6a51ae', position:'absolute', left:0, bottom:0}}></Text>
-                  <Text style={{ width:48, height: 48, borderBottomWidth:6, borderRightWidth:6, borderColor:'#6a51ae', position:'absolute', right:0, bottom:0}}></Text>
+                  <Text style={{ width:48, height: 48, borderTopWidth:6, borderLeftWidth:6, borderColor:'#d1121a'}}></Text>
+                  <Text style={{ width:48, height: 48, borderTopWidth:6, borderRightWidth:6, borderColor:'#d1121a', position:'absolute', right:0, top:0}}></Text>
+                  <Text style={{ width:48, height: 48, borderBottomWidth:6, borderLeftWidth:6, borderColor:'#d1121a', position:'absolute', left:0, bottom:0}}></Text>
+                  <Text style={{ width:48, height: 48, borderBottomWidth:6, borderRightWidth:6, borderColor:'#d1121a', position:'absolute', right:0, bottom:0}}></Text>
                   <Text style={styles.result}>QR code 를 화면에 보여주세요</Text>
                 </View>
               </View>
@@ -262,7 +262,7 @@ export default class Scan extends Component {
                 underlayColor="#41306c"
                 style={styles.buttonTouch}>
                   <Text style={styles.buttonText}>
-                  <Icon name='ios-radio' size={18} color='#fff' />  검색중 입니다
+                  <Icon name='ios-radio' size={18} color='#fff' />  정보를 찾는중 입니다
                   </Text>
               </TouchableHighlight>
             </View>
