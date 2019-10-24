@@ -174,7 +174,7 @@ const ListStack = createStackNavigator({
 });
 
 const RouteConfig = {
-  시작화면: { 
+  시작: { 
     screen: HomeStack,
     navigationOptions: () => ({
       //header: null,
@@ -182,7 +182,7 @@ const RouteConfig = {
       tabBarVisible: false,
     }),
   },
-  스캔하기: { 
+  스캔: { 
     screen: ScanStack,
     navigationOptions: () => ({
       tabBarOnPress({ navigation, defaultHandler }) {
@@ -195,7 +195,7 @@ const RouteConfig = {
       ),*/
     }),
   },
-  스캔목차: { 
+  목차: { 
     screen: ListStack,
     navigationOptions: () => ({
       tabBarOnPress({ navigation, defaultHandler }) {
@@ -214,7 +214,7 @@ const BottomNavigatorConfig = {
       const { routeName } = navigation.state;
       let iconName;
       
-      if (routeName === '처음') {
+      if (routeName === '시작') {
         iconName = `md-home`;
       } else if (routeName === '스캔') {
         iconName = `ios-qr-scanner`;
