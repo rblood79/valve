@@ -5,12 +5,87 @@
  * @format
  * @flow
  */
+
 import React, { Component } from 'react';
-import { Alert } from 'react-native';
 import { Linking, TouchableHighlight, PermissionsAndroid, Platform, StyleSheet, Text, View, ScrollView, Dimensions, PixelRatio } from 'react-native';
 import { CameraKitCamera, CameraKitCameraScreen, } from 'react-native-camera-kit';
 import Icon from 'react-native-vector-icons/Ionicons';
+
 const { width, height } = Dimensions.get('window');
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1
+	},
+	blockContainer: {
+		borderWidth: 0,
+		borderColor: 'transparent',
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		width: '100%',
+		justifyContent: 'center',
+	},
+	block: {
+		borderWidth: 1,
+		borderColor: '#efefef',
+		width: '33.3%',
+		//padding:16,
+		aspectRatio: 1,
+		alignItems: 'center',
+		justifyContent: 'center',
+		marginLeft: -1,
+		marginTop: -1,
+	},
+	empty: {
+		borderWidth: 0,
+		width: '33.3%',
+		//padding:16,
+		aspectRatio: 1,
+	},
+	focusContainer: {
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center',
+		flexDirection: 'column'
+	},
+	result: {
+		position: 'absolute',
+		borderWidth: 0,
+		width: '100%',
+		height: '100%',
+		textAlign: 'center',
+		textAlignVertical: 'center',
+		fontSize: 18,
+		fontWeight: 'bold',
+		color: '#000000',
+		opacity: .6
+	},
+	footerFix: {
+		flex: 0,
+		alignItems: 'center',
+		justifyContent: 'center',
+		flexDirection: 'column'
+	},
+	buttonTouch: {
+		flex: 1,
+		borderWidth: 0,
+		backgroundColor: '#242424',
+		padding: 16,
+	},
+	buttonText: {
+		borderWidth: 0,
+		fontSize: 18,
+		fontWeight: 'bold',
+		textAlign: 'center',
+		color: '#fff',
+	},
+	buttonTouching: {
+		flex: 1,
+		borderWidth: 0,
+		backgroundColor: '#ccc',
+		padding: 16,
+	},
+});
 
 export default class Scan extends Component {
 	constructor(props) {
@@ -19,41 +94,22 @@ export default class Scan extends Component {
 			qrvalue: '',
 			opneScanner: false,
 		};
-		//this.onOpneScanner();
+		this.onOpneScanner();
 	}
-
-	openLink = () => {
-		Linking.openURL(this.state.qrvalue);
-	}
-
 	onOpenlink(ID) {
+		//Linking.openURL(this.state.qrvalue);
 		this.props.navigation.navigate('DETAIL', { ID: ID });
 	}
-
-	onBarcodeScan = (QR_Code) => {
-		this.setState({
-			qrvalue: QR_Code,
-			opneScanner: false
-		});
-		/*this.setState({ QR_Code_Value: QR_Code });
-		this.setState({ Start_Scanner: false });*/
+	onBarcodeScan(qrvalue) {
+		//console.log('onBarcodeScan',qrvalue)
+		//called after te successful scanning of QRCode/Barcode
+		this.setState({ qrvalue: qrvalue });
+		this.setState({ opneScanner: false });
 	}
-
-	onBottomButtonPressed(event) {
-		/*const captureImages = JSON.stringify(event.captureImages);
-		Alert.alert(
-			`${event.type} button pressed`,
-			`${captureImages}`,
-			[
-				{ text: 'OK', onPress: () => console.log('OK Pressed') },
-			],
-			{ cancelable: false }
-		)*/
-	}
-
 	onOpneScanner() {
-		console.log('Platform.OS: ', Platform.OS)
+
 		var that = this;
+		//To Start Scanning
 		if (Platform.OS === 'android') {
 			async function requestCameraPermission() {
 				try {
@@ -65,10 +121,8 @@ export default class Scan extends Component {
 					)
 					if (granted === PermissionsAndroid.RESULTS.GRANTED) {
 						//If CAMERA Permission is granted
-						that.setState({
-							qrvalue: '',
-							opneScanner: true
-						});
+						that.setState({ qrvalue: '' });
+						that.setState({ opneScanner: true });
 					} else {
 						alert("CAMERA permission denied");
 					}
@@ -80,39 +134,37 @@ export default class Scan extends Component {
 			//Calling the camera permission function
 			requestCameraPermission();
 		} else {
-			console.log(this.state)
-			that.setState({
-				qrvalue: '',
-				opneScanner: true
-			});
-		};
+			that.setState({ qrvalue: '' });
+			that.setState({ opneScanner: true });
+		}
 	}
 
 	render() {
+		//console.log('scan')
+		//this.onOpneScanner();
 		let displayModal;
 		let ID = null;
 		let MAKEDATE = null;
 		let STARTDATE = null;
-		
-		console.log('this.state.qrvalue:', this.state.qrvalue, 'this.state.opneScanner:', this.state.opneScanner)
-		if (!this.state.opneScanner) {
+		//console.log('this.state.opneScanner:',this.state.opneScanner)
+		//If qrvalue is set then return this view
+		if (this.state.qrvalue) {
 			let tempArray = this.state.qrvalue.split('/');
 			ID = tempArray[0];
 			MAKEDATE = tempArray[1] || '정보가 없습니다';
 			STARTDATE = tempArray[2] || '정보가 없습니다';
 
-			console.log('a')
 			return (
 				<View style={{ flex: 1 }}>
 
 					<View style={styles.container}>
 						<View style={styles.focusContainer}>
 							<View style={{ width: 192, height: 192, }}>
-								<View style={{ width: 48, height: 48, borderTopWidth: 6, borderLeftWidth: 6, borderColor: '#d1121a'}}></View>
-								<View style={{ width: 48, height: 48, borderTopWidth: 6, borderRightWidth: 6, borderColor: '#d1121a', position: 'absolute', right: 0, top: 0 }}></View>
-								<View style={{ width: 48, height: 48, borderBottomWidth: 6, borderLeftWidth: 6, borderColor: '#d1121a', position: 'absolute', left: 0, bottom: 0 }}></View>
-								<View style={{ width: 48, height: 48, borderBottomWidth: 6, borderRightWidth: 6, borderColor: '#d1121a', position: 'absolute', right: 0, bottom: 0 }}></View>
-								<View style={styles.result}><Text style={styles.resultText}>{this.state.qrvalue ? ID : 'ㅠㅠ'}</Text></View>
+								<Text style={{ width: 48, height: 48, borderTopWidth: 6, borderLeftWidth: 6, borderColor: '#d1121a' }}></Text>
+								<Text style={{ width: 48, height: 48, borderTopWidth: 6, borderRightWidth: 6, borderColor: '#d1121a', position: 'absolute', right: 0, top: 0 }}></Text>
+								<Text style={{ width: 48, height: 48, borderBottomWidth: 6, borderLeftWidth: 6, borderColor: '#d1121a', position: 'absolute', left: 0, bottom: 0 }}></Text>
+								<Text style={{ width: 48, height: 48, borderBottomWidth: 6, borderRightWidth: 6, borderColor: '#d1121a', position: 'absolute', right: 0, bottom: 0 }}></Text>
+								<Text style={styles.result}>{this.state.qrvalue ? ID : ''}</Text>
 							</View>
 						</View>
 					</View>
@@ -164,10 +216,10 @@ export default class Scan extends Component {
 					</View>
 
 				</View>
-			)
+			);
 		} else {
-			console.log('b')
 			return (
+
 				<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 					<CameraKitCameraScreen
 						style={{ position: 'absolute', width: width, height: height }}
@@ -179,22 +231,19 @@ export default class Scan extends Component {
 						onReadCode={event =>
 							this.onBarcodeScan(event.nativeEvent.codeStringValue)
 						}
-						/*flashImages={{
-							on: require('../assets/images/flashOn.png'),
-							off: require('../assets/images/flashOff.png'),
-							auto: require('../assets/images/flashAuto.png')
-						}}*/
 					/>
 					<View style={styles.container}>
+
 						<View style={styles.focusContainer}>
-							<View style={{ width: 192, height: 192, }}>
-								<View style={{ width: 48, height: 48, borderTopWidth: 6, borderLeftWidth: 6, borderColor: '#d1121a'}}></View>
-								<View style={{ width: 48, height: 48, borderTopWidth: 6, borderRightWidth: 6, borderColor: '#d1121a', position: 'absolute', right: 0, top: 0 }}></View>
-								<View style={{ width: 48, height: 48, borderBottomWidth: 6, borderLeftWidth: 6, borderColor: '#d1121a', position: 'absolute', left: 0, bottom: 0 }}></View>
-								<View style={{ width: 48, height: 48, borderBottomWidth: 6, borderRightWidth: 6, borderColor: '#d1121a', position: 'absolute', right: 0, bottom: 0 }}></View>
-								<View style={styles.result}><Text style={styles.resultText}>code를 화면 가까이</Text></View>
+							<View style={{ width: 192, height: 192 }}>
+								<Text style={{ width: 48, height: 48, borderTopWidth: 6, borderLeftWidth: 6, borderColor: '#d1121a' }}></Text>
+								<Text style={{ width: 48, height: 48, borderTopWidth: 6, borderRightWidth: 6, borderColor: '#d1121a', position: 'absolute', right: 0, top: 0 }}></Text>
+								<Text style={{ width: 48, height: 48, borderBottomWidth: 6, borderLeftWidth: 6, borderColor: '#d1121a', position: 'absolute', left: 0, bottom: 0 }}></Text>
+								<Text style={{ width: 48, height: 48, borderBottomWidth: 6, borderRightWidth: 6, borderColor: '#d1121a', position: 'absolute', right: 0, bottom: 0 }}></Text>
+								<Text style={styles.result}>QR code 를 화면에 보여주세요</Text>
 							</View>
 						</View>
+
 					</View>
 
 					<View style={styles.footerFix}>
@@ -219,102 +268,9 @@ export default class Scan extends Component {
 						</View>
 					</View>
 				</View>
-			)
-		}
-		/*return (
-			<CameraKitCameraScreen
-				actions={{ rightButtonText: 'Ok', leftButtonText: 'back' }}
-				onBottomButtonPressed={(event) => this.onBottomButtonPressed(event)}
-				showFrame={true}
-				scanBarcode={true}
-				laserColor={'blue'}
-				frameColor={'cyan'}
-				colorForScannerFrame={'red'}
-			flashImages={{
-				on: require('./../images/flashOn.png'),
-				off: require('./../images/flashOff.png'),
-				auto: require('./../images/flashAuto.png')
-			}}
-			cameraFlipImage={require('./../images/cameraFlipIcon.png')}
-			captureButtonImage={require('./../images/cameraButton.png')}
-			/>
-		);*/
+			);
+		};
+
 	}
 
 }
-const styles = StyleSheet.create({
-	container: {
-		flex: 1
-	},
-	blockContainer: {
-		borderWidth: 0,
-		borderColor: 'transparent',
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		width: '100%',
-		justifyContent: 'center',
-	},
-	block: {
-		borderWidth: 1,
-		borderColor: '#efefef',
-		width: '33.3%',
-		//padding:16,
-		aspectRatio: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-		marginLeft: -1,
-		marginTop: -1,
-	},
-	empty: {
-		borderWidth: 0,
-		width: '33.3%',
-		//padding:16,
-		aspectRatio: 1,
-	},
-	focusContainer: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-		flexDirection: 'column',
-	},
-	result: {
-		position: 'absolute',
-		width: '100%',
-		height: '100%',
-		flex: 1,
-		justifyContent: 'center',
-		alignItems:'center'
-	},
-	resultText: {
-		fontSize: 18,
-		fontWeight: 'bold',
-		color: '#000000',
-		opacity: .6,
-		alignSelf:'center'
-	},
-	footerFix: {
-		flex: 0,
-		alignItems: 'center',
-		justifyContent: 'center',
-		flexDirection: 'column'
-	},
-	buttonTouch: {
-		flex: 1,
-		borderWidth: 0,
-		backgroundColor: '#242424',
-		padding: 16,
-	},
-	buttonText: {
-		borderWidth: 0,
-		fontSize: 18,
-		fontWeight: 'bold',
-		textAlign: 'center',
-		color: '#fff',
-	},
-	buttonTouching: {
-		flex: 1,
-		borderWidth: 0,
-		backgroundColor: '#ccc',
-		padding: 16,
-	},
-});

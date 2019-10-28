@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer, createSwitchNavigator, NavigationEvents, } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -40,10 +40,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#6a51ae',
-    height: 60,  
+    height: 60,
     width: 60,
     borderRadius: 30,
-    marginTop:-20,
+    marginTop: -20,
     borderWidth: 1,
     borderColor: '#41306c'
   },
@@ -53,25 +53,26 @@ const styles = StyleSheet.create({
 
 
 const HomeStack = createStackNavigator({
-  HOME: { screen: Home,
+  HOME: {
+    screen: Home,
     navigationOptions: ({ navigation }) => ({
       header: null,
       headerMode: 'none',
     }),
   },
-  
+
 });
 
 const ScanStack = createStackNavigator({
-  SCAN: { 
+  SCAN: {
     screen: Scan,
     navigationOptions: ({ navigation }) => ({
       title: '밸브스캔',
-      headerTitleStyle: { 
-        textAlign:"center", 
-        flex:1,
+      headerTitleStyle: {
+        textAlign: "center",
+        flex: 1,
         fontSize: 14,
-        color:'#fff',
+        color: '#fff',
         borderWidth: 0
       },
       headerStyle: {
@@ -84,21 +85,21 @@ const ScanStack = createStackNavigator({
       },
       headerTintColor: '#d1121a',
       headerLeft: (
-        <View/>
+        <View />
         //<Icon name='ios-arrow-back' size={25} style={styles.stateLeft}/>
       ),
       headerRight: (
-        <Icon name='ios-flash-off' size={25} style={styles.stateRight}/>
+        <Icon name='ios-flash' size={25} style={styles.stateRight} />
       ),
     }),
   },
-  DETAIL: { 
+  DETAIL: {
     screen: Detail,
     navigationOptions: ({ navigation }) => ({
       title: '상세정보',
-      headerTitleStyle: { 
-        textAlign:"center", 
-        flex:1,
+      headerTitleStyle: {
+        textAlign: "center",
+        flex: 1,
         fontSize: 14
       },
       headerStyle: {
@@ -109,25 +110,25 @@ const ScanStack = createStackNavigator({
         borderBottomColor: '#efefef',
         height: 48
       },
-      headerTintColor: '#d1121a',
+      headerTintColor: '#fff',
       headerRight: (
-        <View/>
+        <View />
       ),
     }),
   },
-  
+
 });
 
 const ListStack = createStackNavigator({
-  LIST: { 
+  LIST: {
     screen: List,
     navigationOptions: ({ navigation }) => ({
-      title: '스캔리스트',
-      headerTitleStyle: { 
-        textAlign:"center", 
-        flex:1,
+      title: '스캔목차',
+      headerTitleStyle: {
+        textAlign: "center",
+        flex: 1,
         fontSize: 14,
-        color:'#fff',
+        color: '#fff',
       },
       headerStyle: {
         backgroundColor: '#d1121a',
@@ -137,44 +138,45 @@ const ListStack = createStackNavigator({
         borderBottomColor: '#efefef',
         height: 48
       },
-      headerTintColor: '#d1121a',
+      headerTintColor: '#fff',
       headerLeft: (
-        <View/>
+        <View />
         //<Icon name='ios-arrow-back' size={25} style={styles.stateLeft}/>
       ),
       headerRight: (
-        <Icon name='ios-information-circle-outline' size={25} style={styles.stateRight}/>
+        <Icon name='ios-information-circle-outline' size={25} style={styles.stateRight} />
       ),
     }),
   },
-  DETAIL: { 
+  DETAIL: {
     screen: Detail,
     navigationOptions: ({ navigation }) => ({
       title: '상세정보',
-      headerTitleStyle: { 
-        textAlign:"center", 
-        flex:1,
-        fontSize: 14
+      headerTitleStyle: {
+        textAlign: "center",
+        flex: 1,
+        fontSize: 14,
+        color: '#fff',
       },
       headerStyle: {
-        backgroundColor: '#fff',
+        backgroundColor: '#d1121a',
         elevation: 0,
         shadowOpacity: 0,
         borderBottomWidth: 1,
         borderBottomColor: '#efefef',
         height: 48
       },
-      headerTintColor: '#d1121a',
+      headerTintColor: '#fff',
       headerRight: (
-        <View/>
+        <View />
       ),
     }),
   },
-  
+
 });
 
 const RouteConfig = {
-  시작: { 
+  시작: {
     screen: HomeStack,
     navigationOptions: () => ({
       //header: null,
@@ -182,7 +184,7 @@ const RouteConfig = {
       tabBarVisible: false,
     }),
   },
-  스캔: { 
+  스캔: {
     screen: ScanStack,
     navigationOptions: () => ({
       tabBarOnPress({ navigation, defaultHandler }) {
@@ -195,17 +197,17 @@ const RouteConfig = {
       ),*/
     }),
   },
-  목차: { 
+  목차: {
     screen: ListStack,
     navigationOptions: () => ({
       tabBarOnPress({ navigation, defaultHandler }) {
         navigation.navigate('LIST')
         //defaultHandler();
       },
-      
+
     }),
   },
-  
+
 };
 
 const BottomNavigatorConfig = {
@@ -213,7 +215,7 @@ const BottomNavigatorConfig = {
     tabBarIcon: ({ focused, tintColor }) => {
       const { routeName } = navigation.state;
       let iconName;
-      
+
       if (routeName === '시작') {
         iconName = `md-home`;
       } else if (routeName === '스캔') {
@@ -232,7 +234,7 @@ const BottomNavigatorConfig = {
     showIcon: true,
     showLabel: true,
     labelStyle: {
-      fontSize: 10,
+      fontSize: 12,
     },
     style: {
       borderTopWidth: 1,
@@ -248,12 +250,12 @@ const BottomTabNav = createBottomTabNavigator(RouteConfig, BottomNavigatorConfig
 const AppContainer = createAppContainer(BottomTabNav);
 
 export default class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
   }
   render() {
     return (
-      <AppContainer/>
+      <AppContainer />
     )
   }
 }
