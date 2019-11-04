@@ -1,7 +1,8 @@
 
 import React, { Component } from 'react';
-import { AppRegistry, Platform, StatusBar, FlatList, SectionList, StyleSheet, Text, View, Button, TouchableOpacity, TouchableHighlight } from 'react-native';
+import { AppRegistry, Platform, StatusBar, FlatList, ListItem, SectionList, StyleSheet, Text, View, Button, TouchableOpacity, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import moment from 'moment';
 
 const isAndroid = Platform.OS === 'android';
 
@@ -52,48 +53,64 @@ const styles = StyleSheet.create({
   }
 })
 
-const list = [
-  {
-    id: '0',
-    title: '2019.05.22',
-    data: [
-      { ID: 'TVMSIHMSSSXV201A', STARTDATE: '2019.03.10' },
-      { ID: 'TVMSIHMSSSXV201B', STARTDATE: '2019.05.10' },
-      { ID: 'TVMSIHMSSSXV201C', STARTDATE: '2011.05.16' },
-      { ID: 'TVMSIHMSSSXV202A', STARTDATE: '2013.11.12' },
-      { ID: 'TVMSIHMSSSXV202B', STARTDATE: '2014.08.21' },
-      { ID: 'TVMSIHMSSSXV202C', STARTDATE: '2011.05.03' },
-    ]
-  },
-  {
-    id: '1',
-    title: '2019.05.18',
-    data: [
-      { ID: 'TVMSIHMSSSXV302C', STARTDATE: '2000.02.28' },
-      { ID: 'TVMSTRWESSXV302A', STARTDATE: '2001.05.18' },
-      { ID: 'TVMSZZSCSSXV302C', STARTDATE: '2010.04.21' },
-      { ID: 'TVMSTRWESSXV402A', STARTDATE: 'none' },
-      { ID: 'TVMSTRWESAXV312A', STARTDATE: 'none' },
-      { ID: 'TVMSTRWESAXV612C', STARTDATE: 'none' },
-      { ID: 'TVMSTDDESAXV612C', STARTDATE: 'none' }
-    ]
-  }
-]
+/*const list = [
+  { ID: 'TVMSIHMSSSXV201A', STARTDATE: '2019.03.10' },
+  { ID: 'TVMSIHMSSSXV201B', STARTDATE: '2019.05.10' },
+  { ID: 'TVMSIHMSSSXV201C', STARTDATE: '2011.05.16' },
+  { ID: 'TVMSIHMSSSXV202A', STARTDATE: '2013.11.12' },
+  { ID: 'TVMSIHMSSSXV202B', STARTDATE: '2014.08.21' },
+  { ID: 'TVMSIHMSSSXV202C', STARTDATE: '2011.05.03' },
+]*/
 
+const REQUEST_URL = 'http://172.30.1.27:3000/list';
 const extractKey = ({ ID }) => ID
 
 export default class List extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      list: [],
+      isLoading: true
+    };
   }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    fetch(REQUEST_URL, {
+      method: "GET",
+      dataType: 'json',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: null
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({
+          isLoading: false,
+          list: responseJson,
+        });
+        //console.log(this.state.list)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   onPressLearnMore(ID) {
-    //console.log('onPressLearnMore', UTAG)
+    console.log('onPressLearnMore: ', ID)
     this.props.navigation.navigate('DETAIL', { ID: ID })
   }
 
   renderItem = ({ item }) => {
+    item.STARTDATE = moment(item.STARTDATE).format("YYYY-MM-DD");
     return (
       <View style={styles.listItem}>
+
         <View style={styles.content}>
           <Text style={styles.name}>{item.ID}</Text>
           <Text style={styles.location}>사용 시작일: {item.STARTDATE}</Text>
@@ -101,6 +118,7 @@ export default class List extends Component {
         <TouchableOpacity style={styles.detail} onPress={() => this.onPressLearnMore(item.ID)}>
           <Icon name='ios-arrow-dropright' size={25} color='#cccccc' />
         </TouchableOpacity>
+
       </View>
     )
   }
@@ -115,10 +133,25 @@ export default class List extends Component {
 
   render() {
     console.log('list')
+    /*if (!list2) {
+      return (
+        <View>
+          <Text>lucas!</Text>
+        </View>
+      );
+    } else {
+      
+    }*/
     return (
-      <SectionList
+      <FlatList
         style={styles.container}
-        sections={list}
+        data={this.state.list}
+        renderItem={this.renderItem}
+        keyExtractor={item => item.ID}
+      />
+      /*<SectionList
+        style={styles.container}
+        sections={this.state.list}
         renderItem={this.renderItem}
         renderSectionHeader={this.renderSectionHeader}
         keyExtractor={extractKey}
@@ -127,7 +160,7 @@ export default class List extends Component {
           barStyle="light-content"
           backgroundColor="#6a51ae"
         />
-      </SectionList>
+      </SectionList>*/
     );
   }
 
