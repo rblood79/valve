@@ -18,8 +18,6 @@ import Scan from './src/pages/scan';
 import Detail from './src/pages/detail';
 import List from './src/pages/list';
 
-
-
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -254,6 +252,7 @@ export default class App extends Component {
     super(props);
   }
   render() {
+    //SplashScreen.hide();
     return (
       <AppContainer />
     )
